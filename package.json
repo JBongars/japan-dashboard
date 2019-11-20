@@ -1,0 +1,68 @@
+{
+  "name": "japan-dashboard",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint .",
+    "test": "jest",
+    "test:watch": "jest — watch",
+    "test:coverage": "jest — coverage"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "jest": {
+    "moduleNameMapper": {
+      "\\.(css|less|sass|scss)$": "<rootDir>/__mocks__/styleMock.js",
+      "\\.(gif|ttf|eot|svg)$": "<rootDir>/__mocks__/fileMock.js"
+    }
+  },
+  "dependencies": {
+    "@zeit/next-sass": "^1.0.1",
+    "@zeit/next-typescript": "^1.1.1",
+    "classnames": "2.2.6",
+    "next": "^9.1.4",
+    "next-compose": "0.0.2",
+    "prop-types": "15.7.2",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "uuid": "3.3.2"
+  },
+  "devDependencies": {
+    "@types/enzyme": "^3.10.3",
+    "@types/enzyme-adapter-react-16": "^1.0.5",
+    "@types/jest": "^24.0.23",
+    "@types/node": "^12.12.11",
+    "@types/react": "^16.9.11",
+    "babel-core": "7.0.0-bridge.0",
+    "babel-eslint": "10.0.1",
+    "babel-jest": "24.8.0",
+    "babel-plugin-module-resolver": "^3.2.0",
+    "babel-plugin-syntax-class-properties": "^6.13.0",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-dynamic-import": "2.1.0",
+    "enzyme": "^3.9.0",
+    "enzyme-adapter-react-16": "^1.13.0",
+    "eslint": "^6.6.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-config-prettier": "^4.1.0",
+    "eslint-import-resolver-babel-module": "5.1.0",
+    "eslint-loader": "^2.1.2",
+    "eslint-plugin-cypress": "2.2.1",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jsx-a11y": "^6.2.1",
+    "eslint-plugin-prettier": "^3.0.1",
+    "eslint-plugin-react": "^7.12.4",
+    "eslint-plugin-react-hooks": "1.6.0",
+    "jest": "24.8.0",
+    "lint-staged": "8.1.6",
+    "node-sass": "^4.13.0",
+    "prettier": "1.17.1",
+    "ts-jest": "^24.1.0",
+    "typescript": "^3.7.2"
+  }
+}

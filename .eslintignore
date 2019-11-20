@@ -1,0 +1,12 @@
+
+node_modules
+npm-debug.log
+coverage
+.env
+.log
+.idea
+.vscode
+jsconfig.json
+.DS_Store
+build
+.nyc_report

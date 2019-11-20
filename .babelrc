@@ -1,0 +1,41 @@
+{
+  "presets": [
+    "next/babel"
+  ],
+  "plugins": [
+    "babel-plugin-syntax-class-properties",
+    "babel-plugin-transform-class-properties",
+    "transform-dynamic-import",
+    [
+      "module-resolver",
+      {
+        "root": [
+          "./"
+        ],
+        "alias": {
+          "components": "./src/components/",
+          "services": "./src/services",
+          "containers": "./src/containers",
+          "lib": "./src/lib"
+        }
+      }
+    ]
+  ],
+  "env": {
+    "test": {
+      "presets": [
+        [
+          "next/babel",
+          {
+            "preset-env": {
+              "modules": "commonjs"
+            }
+          }
+        ]
+      ],
+      "plugins": [
+        "babel-plugin-transform-dynamic-import"
+      ]
+    }
+  }
+}
