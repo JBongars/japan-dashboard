@@ -1,8 +1,6 @@
 import * as React from "react";
-import Hello from '../components/hello'
+import HomePage from "../components/homePage";
 
-const Index = () => (<div>
-  <Hello name="John" />
-</div>)
+const Index: React.SFC = () => <HomePage />;
 
 export default Index;

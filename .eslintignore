@@ -10,3 +10,4 @@ jsconfig.json
 .DS_Store
 build
 .nyc_report
+/**/*.d.ts

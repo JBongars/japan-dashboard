@@ -9,6 +9,7 @@
     "start": "next start",
     "lint": "eslint .",
     "test": "jest",
+    "test:spec": "jest",
     "test:watch": "jest — watch",
     "test:coverage": "jest — coverage"
   },
@@ -33,6 +34,7 @@
     "uuid": "3.3.2"
   },
   "devDependencies": {
+    "@babel/preset-typescript": "^7.7.2",
     "@types/enzyme": "^3.10.3",
     "@types/enzyme-adapter-react-16": "^1.0.5",
     "@types/jest": "^24.0.23",
@@ -40,7 +42,7 @@
     "@types/react": "^16.9.11",
     "babel-core": "7.0.0-bridge.0",
     "babel-eslint": "10.0.1",
-    "babel-jest": "24.8.0",
+    "babel-jest": "^24.8.0",
     "babel-plugin-module-resolver": "^3.2.0",
     "babel-plugin-syntax-class-properties": "^6.13.0",
     "babel-plugin-transform-class-properties": "^6.24.1",
