@@ -1,7 +1,13 @@
-@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Open+Sans&display=swap");
 
 body {
   font-size: 1.4em;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   margin: 1.5em;
+}
+
+svg {
+  border: 2px solid red;
+  display: inline-block;
+  vertical-align: middle;
 }

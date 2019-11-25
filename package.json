@@ -26,11 +26,16 @@
     "@zeit/next-sass": "^1.0.1",
     "@zeit/next-typescript": "^1.1.1",
     "classnames": "2.2.6",
+    "d3-geo": "^1.11.9",
+    "dotenv": "^8.2.0",
     "next": "^9.1.4",
     "next-compose": "0.0.2",
     "prop-types": "15.7.2",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
+    "react-simple-maps": "^1.0.0-beta.0",
+    "request-promise-native": "^1.0.8",
+    "topojson-client": "^3.1.0",
     "uuid": "3.3.2"
   },
   "devDependencies": {

@@ -1,12 +1,13 @@
 import * as React from "react";
 import styles from "./styles.scss";
+import Map from "../map";
 
 const HomePage: React.SFC = () => {
   return (
     <div className={styles.container}>
       <div className={styles.col6}>
         <h2>Japan</h2>
-        <div>map</div>
+        {process.browser ? <Map /> : <div />}
       </div>
       <div className={styles.col6}>
         <div>
@@ -24,36 +25,40 @@ const HomePage: React.SFC = () => {
           </div>
         </div>
         <table>
-          <tr>
-            <th>Age</th>
-            <th>Male</th>
-            <th>Female</th>
-            <th>Total</th>
-          </tr>
-          <tr>
-            <td>Below 20</td>
-            <td>10M</td>
-            <td>10M</td>
-            <td>10M</td>
-          </tr>
-          <tr>
-            <td>20 - 40</td>
-            <td>10M</td>
-            <td>10M</td>
-            <td>10M</td>
-          </tr>
-          <tr>
-            <td>40 - 60</td>
-            <td>10M</td>
-            <td>10M</td>
-            <td>10M</td>
-          </tr>
-          <tr>
-            <td>Above 60</td>
-            <td>10M</td>
-            <td>10M</td>
-            <td>10M</td>
-          </tr>
+          <thead>
+            <tr>
+              <th>Age</th>
+              <th>Male</th>
+              <th>Female</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Below 20</td>
+              <td>10M</td>
+              <td>10M</td>
+              <td>10M</td>
+            </tr>
+            <tr>
+              <td>20 - 40</td>
+              <td>10M</td>
+              <td>10M</td>
+              <td>10M</td>
+            </tr>
+            <tr>
+              <td>40 - 60</td>
+              <td>10M</td>
+              <td>10M</td>
+              <td>10M</td>
+            </tr>
+            <tr>
+              <td>Above 60</td>
+              <td>10M</td>
+              <td>10M</td>
+              <td>10M</td>
+            </tr>
+          </tbody>
         </table>
       </div>
     </div>

@@ -1,5 +1,5 @@
 import React from "react";
-import App, { Container } from "next/app";
+import App from "next/app";
 import Head from "next/head";
 
 import "../styles.scss";
@@ -18,7 +18,7 @@ export default class JapanDashboardApp extends App {
   render() {
     const { Component, pageProps } = this.props;
     return (
-      <Container>
+      <React.Fragment>
         <Head>
           <title>Japan Population Dashboard</title>
           <meta
@@ -28,7 +28,7 @@ export default class JapanDashboardApp extends App {
           <meta name="theme-color" content="#00008f" />
         </Head>
         <Component {...pageProps} />
-      </Container>
+      </React.Fragment>
     );
   }
 }
