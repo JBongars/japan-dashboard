@@ -1,5 +1,6 @@
-import config from "../config";
-import * as rp from "request-promise-native";
+import config from "../config/index.json";
+import fetch from "isomorphic-unfetch";
+
 import {
   Prefecture,
   PrefectureResponse,
@@ -8,28 +9,52 @@ import {
 } from "../types";
 
 const getPrefectures = async (): Promise<Prefecture[]> => {
-  const data: PrefectureResponse = await rp.get(
-    `${config.japanDashboardApi.host}/prefecture`,
-    {
-      json: true,
-      simple: true
-    }
-  );
+  console.log("hit service!");
 
-  const result: Prefecture[] = data.result;
-  return result;
+  try {
+    const dataResponse: Response = await fetch(
+      `${config.japanDashboardApi.host}/prefecture`,
+      {
+        method: "GET",
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Headers":
+            "Origin, X-Requested-With, Content-Type, Accept",
+          "Access-Control-Allow-Credentials": "true"
+        }
+      }
+    );
+    const data: PrefectureResponse = await dataResponse.json();
+    const result: Prefecture[] = data.result;
+    return result;
+  } catch (err) {
+    console.error(err);
+  }
 };
 
 const getPrefecturePopulationByIsoCode = async (
   iso: string
 ): Promise<PrefecturePopulation[]> => {
-  const data: PrefecturePopulationResponse = await rp.get(
-    `${config.japanDashboardApi.host}/prefecture/${iso}`,
-    { json: true, simple: true }
-  );
+  try {
+    const dataResponse: Response = await fetch(
+      `${config.japanDashboardApi.host}/prefecture/${iso}`,
+      {
+        method: "GET",
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Headers":
+            "Origin, X-Requested-With, Content-Type, Accept",
+          "Access-Control-Allow-Credentials": "true"
+        }
+      }
+    );
+    const data: PrefecturePopulationResponse = await dataResponse.json();
 
-  const result: PrefecturePopulation[] = data.result;
-  return result;
+    const result: PrefecturePopulation[] = data.result;
+    return result;
+  } catch (err) {
+    console.error(err);
+  }
 };
 
 export { getPrefectures, getPrefecturePopulationByIsoCode };
