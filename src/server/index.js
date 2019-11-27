@@ -4,11 +4,13 @@ const express = require("express");
 const path = require("path");
 const helmet = require("helmet");
 const compression = require("compression");
+const cors = require("cors");
 const next = require("next");
 const expressHealthCheck = require("express-healthcheck");
 const logger = require("./logger");
 const config = require("./config");
-const makeHandler = require("./router/pages");
+const pageRouter = require("./router/pages");
+const apiRouter = require("./router/api");
 const responses = require("./constants/responses");
 const app = next(require("../../config/next"));
 
@@ -20,6 +22,7 @@ app.prepare().then(() => {
   // Define middlewares
   server.use(compression());
   server.use(helmet());
+  server.use(cors());
   server.use(express.json());
   server.get("/up", expressHealthCheck());
 
@@ -31,7 +34,8 @@ app.prepare().then(() => {
     app.serveStatic(req, res, filePath);
   });
 
-  server.use(process.env.ROOT, makeHandler(app));
+  server.use(`${process.env.ROOT}/api`, apiRouter);
+  server.use(process.env.ROOT, pageRouter(app));
 
   // Error handler middleware
   // eslint-disable-next-line no-unused-vars

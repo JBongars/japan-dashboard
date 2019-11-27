@@ -24,6 +24,8 @@ const getPrefectures = async (): Promise<Prefecture[]> => {
         }
       }
     );
+
+    console.log(dataResponse);
     const data: PrefectureResponse = await dataResponse.json();
     const result: Prefecture[] = data.result;
     return result;
