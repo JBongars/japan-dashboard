@@ -25,8 +25,10 @@ const getPrefectures = async (): Promise<Prefecture[]> => {
       }
     );
 
-    console.log(dataResponse);
     const data: PrefectureResponse = await dataResponse.json();
+
+    console.log("Fetching prefectures...");
+    console.log(data);
     const result: Prefecture[] = data.result;
     return result;
   } catch (err) {
@@ -51,6 +53,9 @@ const getPrefecturePopulationByIsoCode = async (
       }
     );
     const data: PrefecturePopulationResponse = await dataResponse.json();
+
+    console.log(`Fetch prefecture iso=${iso}`);
+    console.log(data);
 
     const result: PrefecturePopulation[] = data.result;
     return result;

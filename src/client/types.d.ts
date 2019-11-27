@@ -11,7 +11,7 @@ export interface PrefecturePopulation {
   prefectureIso: string;
   gender: string;
   age: string;
-  population: number;
+  population: string;
 }
 
 export interface PrefectureResponse {
