@@ -35,6 +35,7 @@ app.prepare().then(() => {
   });
 
   server.use(`${process.env.ROOT}/api`, apiRouter);
+  server.use(express.static(path.join(__dirname, '../../public')));
   server.use(process.env.ROOT, pageRouter(app));
 
   // Error handler middleware

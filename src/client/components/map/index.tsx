@@ -5,6 +5,9 @@ import {
   Geographies,
   Geography
 } from "react-simple-maps";
+import { geoPath } from "d3-geo"
+import { geoTimes } from "d3-geo-projection"
+
 
 // import { geoMercator } from "d3-geo";
 
@@ -19,6 +22,10 @@ const MapChart = () => {
   //     .translate([400, 400])
   //     .scale(1000);
   // };
+
+  const projection = () =>  geoTimes()
+      .translate([width/2, height/2])
+      .scale(160)
 
   return (
     <>

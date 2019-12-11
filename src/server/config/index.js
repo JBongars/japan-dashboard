@@ -4,6 +4,6 @@ module.exports = {
   serverPort: process.env.PORT || 8080,
   rootPath: process.env.ROOT || "",
   prefectureApi: {
-    host: "http://localhost:5000/prefecture"
+    host: process.env.PREFECTURE_HOST || "http://localhost:5000/prefecture"
   }
 };
