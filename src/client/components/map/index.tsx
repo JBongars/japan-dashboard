@@ -34,6 +34,9 @@ const MapChart = () => {
         height={height}
         data-tip=""
         projection="geoMercator"
+        projectionConfig={{
+          scale: 1300
+        }}
       >
         <ZoomableGroup>
           <Geographies geography={geoUrl}>
