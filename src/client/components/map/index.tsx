@@ -17,12 +17,6 @@ const MapChart = () => {
   const width = 800;
   const height = 800;
 
-  // const projection = () => {
-  //   return geoMercator()
-  //     .translate([400, 400])
-  //     .scale(1000);
-  // };
-
   const projection = () =>  geoTimes()
       .translate([width/2, height/2])
       .scale(160)
@@ -54,16 +48,25 @@ const MapChart = () => {
                   // }}
                   style={{
                     default: {
-                      fill: "#D6D6DA",
-                      outline: "none"
+                      fill: "#DDD",
+                      outline: "none",
+                      stroke: '#555',
+                      'stroke-width': '1px',
+                      'stroke-linejoin': 'round',
                     },
                     hover: {
                       fill: "#F53",
-                      outline: "none"
+                      outline: "none",
+                      stroke: '#555',
+                      'stroke-width': '1px',
+                      'stroke-linejoin': 'round',
                     },
                     pressed: {
                       fill: "#E42",
-                      outline: "none"
+                      outline: "none",
+                      stroke: '#555',
+                      'stroke-width': '1px',
+                      'stroke-linejoin': 'round',
                     }
                   }}
                 />
