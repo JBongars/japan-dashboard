@@ -1,5 +1,6 @@
 import fetch from "isomorphic-unfetch";
 import config from "../config/index.json";
+import useMemoAsync from "../utils/useMemoAsync";
 
 import {
   Prefecture,
@@ -8,60 +9,55 @@ import {
   PrefecturePopulationResponse
 } from "../types";
 
-const getPrefectures = async (): Promise<Prefecture[]> => {
-  try {
-    console.log("Fetching prefectures...");
-    const dataResponse: Response = await fetch(
-      `${config.japanDashboardApi.host}/prefecture`,
-      {
-        method: "GET",
-        headers: {
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Headers":
-            "Origin, X-Requested-With, Content-Type, Accept",
-          "Access-Control-Allow-Credentials": "true"
-        }
+const getPrefecturesInner = async (): Promise<Prefecture[]> => {
+  console.log("Fetching prefectures...");
+  const dataResponse: Response = await fetch(
+    `${config.japanDashboardApi.host}/prefecture`,
+    {
+      method: "GET",
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Headers":
+          "Origin, X-Requested-With, Content-Type, Accept",
+        "Access-Control-Allow-Credentials": "true"
       }
-    );
+    }
+  );
 
-    const data: PrefectureResponse = await dataResponse.json();
+  const data: PrefectureResponse = await dataResponse.json();
 
-    console.log(data);
+  console.log(data);
 
-    return data.result;
-  } catch (err) {
-    console.error(err);
-  }
-  return [];
+  return data.result;
 };
 
-const getPrefecturePopulationByIsoCode = async (
+const getPrefecturePopulationByIsoCodeInner = async (
   iso: string
 ): Promise<PrefecturePopulation[]> => {
-  try {
-    const dataResponse: Response = await fetch(
-      `${config.japanDashboardApi.host}/prefecture/${iso}`,
-      {
-        method: "GET",
-        headers: {
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Headers":
-            "Origin, X-Requested-With, Content-Type, Accept",
-          "Access-Control-Allow-Credentials": "true"
-        }
+  const dataResponse: Response = await fetch(
+    `${config.japanDashboardApi.host}/prefecture/${iso}`,
+    {
+      method: "GET",
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Headers":
+          "Origin, X-Requested-With, Content-Type, Accept",
+        "Access-Control-Allow-Credentials": "true"
       }
-    );
-    const data: PrefecturePopulationResponse = await dataResponse.json();
-
-    console.log(`Fetch prefecture iso=${iso}`);
-    console.log(data);
-
-    return data.result;
-  } catch (err) {
-    console.error(err);
-  }
-
-  return [];
+    }
+  );
+  const data: PrefecturePopulationResponse = await dataResponse.json();
+  return data.result;
 };
 
-export { getPrefectures, getPrefecturePopulationByIsoCode };
+const getPrefectures = useMemoAsync(getPrefecturesInner);
+const getPrefecturePopulationByIsoCode = useMemoAsync(
+  getPrefecturePopulationByIsoCodeInner
+);
+
+export {
+  getPrefectures,
+  getPrefecturePopulationByIsoCode,
+  getPrefecturesInner,
+  getPrefecturePopulationByIsoCodeInner
+};

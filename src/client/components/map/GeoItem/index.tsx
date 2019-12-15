@@ -11,28 +11,24 @@ const stroke: CSSProperties = {
 
 const GeoItem = (geo: any): React.ComponentElement<any, null> => {
   const context: any = useContext(HomeContext);
-  const { data, mutators } = context;
-  const { prefectures } = data;
+  const { mutators } = context;
   const { setSelectedPrefecture } = mutators;
 
   return (
     <Geography
       key={geo.rsmKey}
       geography={geo}
-      onMouseEnter={() => {
+      onMouseEnter={async () => {
         const { prefectureId } = geo.properties;
-        const selectedPrefecture = prefectures.find(
-          elem => elem.id === prefectureId
-        );
-        setSelectedPrefecture(selectedPrefecture);
-        console.log({ prefectureId });
+        setSelectedPrefecture(prefectureId);
       }}
       // onMouseLeave={() => {
       //   setTooltipContent("");
       // }}
       style={{
         default: {
-          fill: `rgba(0,0,102,${Math.random()})`,
+          // fill: `rgba(0,0,102,${Math.random()})`,
+          fill: `rgba(0,0,102,0.1)`,
           outline: "none",
           ...stroke
         },

@@ -28,7 +28,7 @@ class HomeData extends React.Component<Object, HomeDataState> {
   ): Promise<void> => {
     const { data } = this.state;
     const selectedPrefecture = data.prefectures.find(
-      elem => elem.id === selectedPrefectureIso
+      elem => elem.iso === selectedPrefectureIso
     );
     const prefecturePopulations: PrefecturePopulation[] = await getPrefecturePopulationByIsoCode(
       selectedPrefectureIso
