@@ -54,23 +54,13 @@ const HomePage = (): React.ComponentElement<null, null> => {
   return (
     <div className={styles.container}>
       <div className={styles.col6}>
-        <h2>Japan</h2>
+        <h2>
+          Japan - {selectedPrefecture.prefectureEn} (
+          {selectedPrefecture.prefectureJp})
+        </h2>
         {process.browser ? <Map /> : <div />}
       </div>
       <div className={styles.col6}>
-        <div>
-          <h2>Prefecture</h2>
-          <select
-            value={selectedPrefecture.iso}
-            onChange={updateSelectedPrefecture}
-          >
-            {prefectures.map(elem => (
-              <option key={`prefecture_${elem.id}`} value={elem.iso}>
-                {elem.prefectureEn} ({elem.prefectureJp})
-              </option>
-            ))}
-          </select>
-        </div>
         <div>
           <h2>Total Population</h2>
           <h2 className={styles.blueText}>

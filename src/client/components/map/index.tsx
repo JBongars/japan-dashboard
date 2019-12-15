@@ -1,8 +1,9 @@
 import React, { memo } from "react";
 import { ZoomableGroup, ComposableMap, Geographies } from "react-simple-maps";
 import GeoItem from "./GeoItem";
+import config from "../../config/index.json";
 
-const geoUrl = "/geodata/prefectures.json";
+const geoUrl = config.japanDashboardApi.geoDataUrl;
 
 const Map = (): React.ComponentElement<void, null> => {
   const width = 800;

@@ -1,5 +1,6 @@
 {
   "japanDashboardApi": {
-    "host": "http://localhost:8080/api"
+    "host": "http://localhost:8080/api",
+    "geoDataUrl": "/geodata/prefectures.json"
   }
 }

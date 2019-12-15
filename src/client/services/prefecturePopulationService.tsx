@@ -25,7 +25,6 @@ const getPrefecturesInner = async (): Promise<Prefecture[]> => {
   );
 
   const data: PrefectureResponse = await dataResponse.json();
-
   console.log(data);
 
   return data.result;
