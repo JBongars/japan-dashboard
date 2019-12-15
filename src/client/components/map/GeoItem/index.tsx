@@ -22,7 +22,7 @@ const GeoItem = (geo: any): React.ComponentElement<any, null> => {
       // }}
       style={{
         default: {
-          fill: "#DDD",
+          fill: `rgba(0,0,102,${Math.random()})`,
           outline: "none",
           ...stroke
         },
