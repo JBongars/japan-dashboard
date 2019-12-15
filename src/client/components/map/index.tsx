@@ -25,7 +25,7 @@ const Map = (): React.ComponentElement<void, null> => {
         data-tip=""
         projection="geoMercator"
         projectionConfig={{
-          scale: 1300
+          scale: 1500
         }}
       >
         <ZoomableGroup>

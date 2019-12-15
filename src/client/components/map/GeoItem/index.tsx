@@ -2,16 +2,13 @@ import React, { CSSProperties } from "react";
 import { Geography } from "react-simple-maps";
 
 const stroke: CSSProperties = {
-  stroke: "#555",
-  strokeWidth: "1px",
+  stroke: "#888",
+  strokeWidth: "0.5pt",
   strokeLinejoin: "round"
 };
 
-// interface GeoItemProps {
-//   geo: any;
-// }
-
 const GeoItem = (geo: any): React.ComponentElement<any, null> => {
+  console.log({ geo });
   return (
     <Geography
       key={geo.rsmKey}
