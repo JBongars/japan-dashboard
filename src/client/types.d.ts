@@ -23,3 +23,7 @@ export interface PrefecturePopulationResponse {
   result: PrefecturePopulation[];
   [key: string]: string | number | object;
 }
+
+export interface GeoItemData {
+  geographies: Object[];
+}

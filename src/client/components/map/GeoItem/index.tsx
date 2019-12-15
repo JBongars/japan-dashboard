@@ -1,0 +1,47 @@
+import React, { CSSProperties } from "react";
+import { Geography } from "react-simple-maps";
+
+const stroke: CSSProperties = {
+  stroke: "#555",
+  strokeWidth: "1px",
+  strokeLinejoin: "round"
+};
+
+// interface GeoItemProps {
+//   geo: any;
+// }
+
+const GeoItem = (geo: any): React.ComponentElement<any, null> => {
+  return (
+    <Geography
+      key={geo.rsmKey}
+      geography={geo}
+      // onMouseEnter={() => {
+      //   const { NAME, POP_EST } = geo.properties;
+      //   setTooltipContent(`${NAME} — ${rounded(POP_EST)}`);
+      // }}
+      // onMouseLeave={() => {
+      //   setTooltipContent("");
+      // }}
+      style={{
+        default: {
+          fill: "#DDD",
+          outline: "none",
+          ...stroke
+        },
+        hover: {
+          fill: "#F53",
+          outline: "none",
+          ...stroke
+        },
+        pressed: {
+          fill: "#E42",
+          outline: "none",
+          ...stroke
+        }
+      }}
+    />
+  );
+};
+
+export default GeoItem;

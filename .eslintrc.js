@@ -1,33 +1,22 @@
 module.exports = {
-  env: {
-    browser: true,
-    node: true,
-    jest: true,
-    es6: true
+  "extends": ["airbnb", "plugin:prettier/recommended"],
+  "parserOptions": {
+    "sourceType": "module"
   },
-  parser: "babel-eslint",
-  globals: {
-    sleep: true
+  "env": {
+    "node": true,
+    "jest": true,
+    "es6": true,
+    "browser": true
   },
-  extends: [
-    "eslint:recommended",
-    "plugin:react/recommended",
-
-
-    
-    "plugin:prettier/recommended"
-  ],
-  plugins: ["react-hooks"],
-  rules: {
-    "no-console": 1,
-    "react/display-name": 0,
-    "react/prop-types": 0,
-    "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": "error"
+  "parser": "babel-eslint",
+  "rules": {
+    "prettier/prettier": "error",
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", "ts", "tsx"] }],
   },
-  settings: {
-    react: {
-      version: "detect"
+  "settings": {
+    "import/resolver": {
+      "babel-module": {}
     }
   }
-};
+}
