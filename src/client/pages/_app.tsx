@@ -1,6 +1,7 @@
 import React from "react";
-import App from "next/app";
+import App, { Container } from "next/app";
 import Head from "next/head";
+import HomeContext from "../context/homeData";
 
 import "../styles.scss";
 
@@ -18,7 +19,7 @@ export default class JapanDashboardApp extends App {
   render() {
     const { Component, pageProps } = this.props;
     return (
-      <React.Fragment>
+      <Container>
         <Head>
           <title>Japan Population Dashboard</title>
           <meta
@@ -27,8 +28,10 @@ export default class JapanDashboardApp extends App {
           />
           <meta name="theme-color" content="#00008f" />
         </Head>
-        <Component {...pageProps} />
-      </React.Fragment>
+        <HomeContext {...pageProps}>
+          <Component {...pageProps} />
+        </HomeContext>
+      </Container>
     );
   }
 }

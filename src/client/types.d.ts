@@ -25,5 +25,8 @@ export interface PrefecturePopulationResponse {
 }
 
 export interface GeoItemData {
-  geographies: Object[];
+  rsmKey: string;
+  properties: {
+    prefectureId: string;
+  };
 }

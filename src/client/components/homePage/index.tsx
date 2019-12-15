@@ -1,45 +1,21 @@
-import * as React from "react";
+import React, { useContext } from "react";
 import styles from "./styles.scss";
 import Map from "../map";
-import {
-  getPrefectures,
-  getPrefecturePopulationByIsoCode
-} from "../../services/prefecturePopulationService";
-import { Prefecture, PrefecturePopulation } from "../../types";
+import { HomeContext } from "../../context/homeData";
+import { PrefecturePopulation } from "../../types";
 
-const HomePage: React.SFC = () => {
+const HomePage = (): React.ComponentElement<null, null> => {
+  const context: any = useContext(HomeContext);
+  const { data, mutators } = context;
+
   const ageGroups = ["Below 20", "20-40", "40-60", "Above 60"];
 
-  const [prefectures, setPrefectures] = React.useState([]);
-  const [selectedPrefecture, setSelectedPrefecture] = React.useState({
-    iso: ""
-  });
-  const [prefecturePopulations, setPrefecturePopulations] = React.useState([]);
-
-  React.useEffect(function getInitialState() {
-    (async function getInitialStateInner() {
-      const prefectures: Prefecture[] = await getPrefectures();
-      const selectedPrefecture: Prefecture = prefectures[0];
-      const prefecturePopulations: PrefecturePopulation[] = await getPrefecturePopulationByIsoCode(
-        selectedPrefecture.iso
-      );
-
-      // console.log({ prefecturePopulations });
-
-      setPrefectures(prefectures);
-      setSelectedPrefecture(selectedPrefecture);
-      setPrefecturePopulations(prefecturePopulations);
-    })();
-  }, []);
+  const { prefectures, selectedPrefecture, prefecturePopulations } = data;
+  const { setSelectedPrefecture } = mutators;
 
   async function updateSelectedPrefecture(e) {
     const selectedPrefectureIso = e.target.value;
-    const prefecturePopulations: PrefecturePopulation[] = await getPrefecturePopulationByIsoCode(
-      selectedPrefectureIso
-    );
-
-    setSelectedPrefecture(selectedPrefecture);
-    setPrefecturePopulations(prefecturePopulations);
+    setSelectedPrefecture(selectedPrefectureIso);
   }
 
   function abbreviateNumber(num: number): string | boolean {

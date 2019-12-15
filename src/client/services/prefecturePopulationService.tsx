@@ -1,5 +1,5 @@
-import config from "../config/index.json";
 import fetch from "isomorphic-unfetch";
+import config from "../config/index.json";
 
 import {
   Prefecture,
@@ -9,9 +9,8 @@ import {
 } from "../types";
 
 const getPrefectures = async (): Promise<Prefecture[]> => {
-  console.log("hit service!");
-
   try {
+    console.log("Fetching prefectures...");
     const dataResponse: Response = await fetch(
       `${config.japanDashboardApi.host}/prefecture`,
       {
@@ -27,13 +26,13 @@ const getPrefectures = async (): Promise<Prefecture[]> => {
 
     const data: PrefectureResponse = await dataResponse.json();
 
-    console.log("Fetching prefectures...");
     console.log(data);
-    const result: Prefecture[] = data.result;
-    return result;
+
+    return data.result;
   } catch (err) {
     console.error(err);
   }
+  return [];
 };
 
 const getPrefecturePopulationByIsoCode = async (
@@ -57,11 +56,12 @@ const getPrefecturePopulationByIsoCode = async (
     console.log(`Fetch prefecture iso=${iso}`);
     console.log(data);
 
-    const result: PrefecturePopulation[] = data.result;
-    return result;
+    return data.result;
   } catch (err) {
     console.error(err);
   }
+
+  return [];
 };
 
 export { getPrefectures, getPrefecturePopulationByIsoCode };

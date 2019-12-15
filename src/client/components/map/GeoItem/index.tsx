@@ -1,5 +1,7 @@
-import React, { CSSProperties } from "react";
+import React, { CSSProperties, useContext } from "react";
 import { Geography } from "react-simple-maps";
+
+import { HomeContext } from "../../../context/homeData";
 
 const stroke: CSSProperties = {
   stroke: "#888",
@@ -8,13 +10,21 @@ const stroke: CSSProperties = {
 };
 
 const GeoItem = (geo: any): React.ComponentElement<any, null> => {
-  console.log({ geo });
+  const context: any = useContext(HomeContext);
+  const { data, mutators } = context;
+  const { prefectures } = data;
+  const { setSelectedPrefecture } = mutators;
+
   return (
     <Geography
       key={geo.rsmKey}
       geography={geo}
       onMouseEnter={() => {
         const { prefectureId } = geo.properties;
+        const selectedPrefecture = prefectures.find(
+          elem => elem.id === prefectureId
+        );
+        setSelectedPrefecture(selectedPrefecture);
         console.log({ prefectureId });
       }}
       // onMouseLeave={() => {

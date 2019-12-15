@@ -1,21 +1,12 @@
 import React, { memo } from "react";
 import { ZoomableGroup, ComposableMap, Geographies } from "react-simple-maps";
 import GeoItem from "./GeoItem";
-// import { geoPath } from "d3-geo";
-// import { geoTimes } from "d3-geo-projection";
-
-// import { geoMercator } from "d3-geo";
 
 const geoUrl = "/geodata/prefectures.json";
 
 const Map = (): React.ComponentElement<void, null> => {
   const width = 800;
   const height = 800;
-
-  // const projection = () =>
-  //   geoTimes()
-  //     .translate([width / 2, height / 2])
-  //     .scale(160);
 
   return (
     <React.Fragment>
@@ -30,7 +21,11 @@ const Map = (): React.ComponentElement<void, null> => {
       >
         <ZoomableGroup>
           <Geographies geography={geoUrl}>
-            {(obj: any) => obj.geographies.map(GeoItem)}
+            {(obj: any) =>
+              obj.geographies.map((elem, index: number) => (
+                <GeoItem key={`GeoItem_${index}`} {...elem} />
+              ))
+            }
           </Geographies>
         </ZoomableGroup>
       </ComposableMap>
