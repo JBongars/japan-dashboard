@@ -13,10 +13,10 @@ const GeoItem = (geo: any): React.ComponentElement<any, null> => {
     <Geography
       key={geo.rsmKey}
       geography={geo}
-      // onMouseEnter={() => {
-      //   const { NAME, POP_EST } = geo.properties;
-      //   setTooltipContent(`${NAME} — ${rounded(POP_EST)}`);
-      // }}
+      onMouseEnter={() => {
+        const { prefectureId } = geo.properties;
+        console.log({ prefectureId });
+      }}
       // onMouseLeave={() => {
       //   setTooltipContent("");
       // }}

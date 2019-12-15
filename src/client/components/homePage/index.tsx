@@ -17,7 +17,7 @@ const HomePage: React.SFC = () => {
   const [prefecturePopulations, setPrefecturePopulations] = React.useState([]);
 
   React.useEffect(function getInitialState() {
-    (async function() {
+    (async function getInitialStateInner() {
       const prefectures: Prefecture[] = await getPrefectures();
       const selectedPrefecture: Prefecture = prefectures[0];
       const prefecturePopulations: PrefecturePopulation[] = await getPrefecturePopulationByIsoCode(
@@ -58,9 +58,11 @@ const HomePage: React.SFC = () => {
 
     if (num >= 10 ** 9) {
       return helper(num, 9, "BLN");
-    } else if (num >= 10 ** 6) {
+    }
+    if (num >= 10 ** 6) {
       return helper(num, 6, "MIL");
-    } else if (num >= 10 ** 3) {
+    }
+    if (num >= 10 ** 3) {
       return helper(num, 3, "K");
     }
     return Math.round(num).toString();
@@ -71,7 +73,7 @@ const HomePage: React.SFC = () => {
   ): number =>
     prefecturePopulations
       .map((elem: PrefecturePopulation): string => elem.population)
-      .reduce((a: number, elem: string): number => a + parseInt(elem), 0);
+      .reduce((a: number, elem: string): number => a + parseInt(elem, 10), 0);
 
   return (
     <div className={styles.container}>
