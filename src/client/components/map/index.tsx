@@ -1,7 +1,7 @@
 import React, { memo } from "react";
 import { ZoomableGroup, ComposableMap, Geographies } from "react-simple-maps";
 import GeoItem from "./GeoItem";
-import config from "../../config/index.json";
+import config from "../../config";
 
 const geoUrl = config.japanDashboardApi.geoDataUrl;
 

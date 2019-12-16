@@ -1,5 +1,5 @@
 import fetch from "isomorphic-unfetch";
-import config from "../config/index.json";
+import config from "../config";
 import { useMemoAsync } from "../utils";
 
 import {
@@ -10,7 +10,6 @@ import {
 } from "../types";
 
 const getPrefecturesInner = async (): Promise<Prefecture[]> => {
-  console.log("Fetching prefectures...");
   const dataResponse: Response = await fetch(
     `${config.japanDashboardApi.host}/prefecture`,
     {
@@ -25,8 +24,6 @@ const getPrefecturesInner = async (): Promise<Prefecture[]> => {
   );
 
   const data: PrefectureResponse = await dataResponse.json();
-  console.log(data);
-
   return data.result;
 };
 

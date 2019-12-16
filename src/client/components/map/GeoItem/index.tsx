@@ -1,6 +1,6 @@
 import React, { CSSProperties, useContext } from "react";
 import { Geography } from "react-simple-maps";
-import config from "../../../config/index.json";
+import config from "../../../config";
 
 import { HomeContext } from "../../../context/homeData";
 
