@@ -40,7 +40,6 @@ const GeoItem = (geo: any): React.ComponentElement<any, null> => {
             itemPrefecture.population,
             config.japanDashboardApi.geoGradientMax
           )})`,
-          // fill: `rgba(0,0,102,0.1)`,
           outline: "none",
           ...stroke
         },

@@ -1,49 +1,13 @@
 import React, { useContext } from "react";
 import styles from "./styles.scss";
 import Map from "../map";
+import PopulationTable from "../populationTable";
 import { HomeContext } from "../../context/homeData";
-import { PrefecturePopulation } from "../../types";
 
 const HomePage = (): React.ComponentElement<null, null> => {
   const context: any = useContext(HomeContext);
   const { data } = context;
-
-  const ageGroups = ["Below 20", "20-40", "40-60", "Above 60"];
-
-  const { selectedPrefecture, prefecturePopulations } = data;
-
-  function abbreviateNumber(num: number): string | boolean {
-    function helper(
-      num: number,
-      decimals: number,
-      abbriviation: string,
-      places = 2
-    ): string {
-      const multiplier = 10 ** places;
-      const calculated = num / 10 ** decimals;
-      const rounded = Math.ceil(calculated * multiplier) / multiplier;
-
-      return `${rounded} ${abbriviation}`;
-    }
-
-    if (num >= 10 ** 9) {
-      return helper(num, 9, "BLN");
-    }
-    if (num >= 10 ** 6) {
-      return helper(num, 6, "MIL");
-    }
-    if (num >= 10 ** 3) {
-      return helper(num, 3, "K");
-    }
-    return Math.round(num).toString();
-  }
-
-  const sumPopulation = (
-    prefecturePopulations: PrefecturePopulation[]
-  ): number =>
-    prefecturePopulations
-      .map((elem: PrefecturePopulation): string => elem.population)
-      .reduce((a: number, elem: string): number => a + parseInt(elem, 10), 0);
+  const { selectedPrefecture } = data;
 
   return (
     <div className={styles.container}>
@@ -58,78 +22,7 @@ const HomePage = (): React.ComponentElement<null, null> => {
         {process.browser ? <Map /> : <div />}
       </div>
       <div className={styles.col6}>
-        <div className={styles.headerContainer}>
-          <h2>Total Population</h2>
-          <h2 className={styles.blueText}>
-            {abbreviateNumber(sumPopulation(prefecturePopulations))}
-          </h2>
-        </div>
-        <div>
-          <div className={styles.col6}>
-            <h3>Male</h3>
-            <h3 className={styles.blueText}>
-              {abbreviateNumber(
-                sumPopulation(
-                  prefecturePopulations.filter(elem => elem.gender === "M")
-                )
-              )}
-            </h3>
-          </div>
-          <div className={styles.col6}>
-            <h3>Female</h3>
-            <h3 className={styles.blueText}>
-              {abbreviateNumber(
-                sumPopulation(
-                  prefecturePopulations.filter(elem => elem.gender === "F")
-                )
-              )}
-            </h3>
-          </div>
-        </div>
-        <table>
-          <thead>
-            <tr>
-              <th>Age</th>
-              <th>Male</th>
-              <th>Female</th>
-              <th>Total</th>
-            </tr>
-          </thead>
-          <tbody>
-            {ageGroups.map((ageGroup, i) => (
-              <tr key={`ageGroup${i}`}>
-                <td>{ageGroup}</td>
-                <td>
-                  {abbreviateNumber(
-                    sumPopulation(
-                      prefecturePopulations.filter(
-                        elem => elem.gender === "M" && elem.age === ageGroup
-                      )
-                    )
-                  )}
-                </td>
-                <td>
-                  {abbreviateNumber(
-                    sumPopulation(
-                      prefecturePopulations.filter(
-                        elem => elem.gender === "F" && elem.age === ageGroup
-                      )
-                    )
-                  )}
-                </td>
-                <td>
-                  {abbreviateNumber(
-                    sumPopulation(
-                      prefecturePopulations.filter(
-                        elem => elem.age === ageGroup
-                      )
-                    )
-                  )}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        <PopulationTable />
       </div>
     </div>
   );

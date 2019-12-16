@@ -1,10 +1,12 @@
 const express = require("express");
-const httpProxy = require("http-proxy");
+const HttpProxy = require("http-proxy");
+
 const router = express.Router();
 const config = require("../config");
 const logger = require("../logger");
 
-const proxy = new httpProxy.createProxyServer();
+// eslint-disable-next-line new-cap
+const proxy = new HttpProxy.createProxyServer();
 
 router.use("/prefecture", (req, res) => {
   logger.info(`Redirecting request to ${config.prefectureApi.host}`);

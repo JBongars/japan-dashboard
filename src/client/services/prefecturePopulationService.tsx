@@ -1,6 +1,6 @@
 import fetch from "isomorphic-unfetch";
 import config from "../config/index.json";
-import useMemoAsync from "../utils/useMemoAsync";
+import { useMemoAsync } from "../utils";
 
 import {
   Prefecture,
