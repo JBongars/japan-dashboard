@@ -1,5 +1,12 @@
 .container {
   text-align: left;
+  font-size: 1.4em;
+  font-family: "Open Sans", sans-serif;
+  margin: 1.5em;
+
+  h2 {
+    line-height: 8px;
+  }
 
   table {
     table-layout: fixed;

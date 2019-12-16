@@ -1,9 +1,12 @@
 export interface Prefecture {
-  Id: number;
-  prefectureEn: string;
-  prefectureJp: string;
-  region: string;
-  iso: string;
+  population?: number;
+  prefectureDetails: {
+    Id?: number;
+    prefectureEn?: string;
+    prefectureJp?: string;
+    region?: string;
+    iso: string;
+  }
 }
 
 export interface PrefecturePopulation {

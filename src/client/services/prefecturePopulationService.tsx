@@ -30,6 +30,12 @@ const getPrefecturesInner = async (): Promise<Prefecture[]> => {
   return data.result;
 };
 
+const getBasePrefecture = (): Prefecture => ({
+  prefectureDetails: {
+    iso: "all"
+  }
+});
+
 const getPrefecturePopulationByIsoCodeInner = async (
   iso: string
 ): Promise<PrefecturePopulation[]> => {
@@ -56,6 +62,7 @@ const getPrefecturePopulationByIsoCode = useMemoAsync(
 
 export {
   getPrefectures,
+  getBasePrefecture,
   getPrefecturePopulationByIsoCode,
   getPrefecturesInner,
   getPrefecturePopulationByIsoCodeInner

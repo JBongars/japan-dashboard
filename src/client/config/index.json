@@ -1,6 +1,7 @@
 {
   "japanDashboardApi": {
     "host": "http://localhost:8080/api",
-    "geoDataUrl": "/geodata/prefectures.json"
+    "geoDataUrl": "/geodata/prefectures.json",
+    "geoGradientMax": 30000000
   }
 }

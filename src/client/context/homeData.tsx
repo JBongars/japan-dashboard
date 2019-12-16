@@ -1,7 +1,10 @@
 /* eslint-disable react/sort-comp */
 
 import React from "react";
-import { getPrefecturePopulationByIsoCode } from "../services/prefecturePopulationService";
+import {
+  getPrefecturePopulationByIsoCode,
+  getBasePrefecture
+} from "../services/prefecturePopulationService";
 import { Prefecture, PrefecturePopulation } from "../types";
 
 export interface HomeDataState {
@@ -28,10 +31,25 @@ class HomeData extends React.Component<Object, HomeDataState> {
   ): Promise<void> => {
     const { data } = this.state;
     const selectedPrefecture = data.prefectures.find(
-      elem => elem.iso === selectedPrefectureIso
+      elem => elem.prefectureDetails.iso === selectedPrefectureIso
     );
     const prefecturePopulations: PrefecturePopulation[] = await getPrefecturePopulationByIsoCode(
       selectedPrefectureIso
+    );
+
+    this.setState(prevState => ({
+      data: {
+        ...prevState.data,
+        selectedPrefecture,
+        prefecturePopulations
+      }
+    }));
+  };
+
+  resetSelectedPrefecture = async () => {
+    const selectedPrefecture: Prefecture = getBasePrefecture();
+    const prefecturePopulations: PrefecturePopulation[] = await getPrefecturePopulationByIsoCode(
+      "all"
     );
 
     this.setState(prevState => ({
@@ -73,6 +91,7 @@ class HomeData extends React.Component<Object, HomeDataState> {
     // eslint-disable-next-line react/no-unused-state
     mutators: {
       setSelectedPrefecture: this.setSelectedPrefecture,
+      resetSelectedPrefecture: this.resetSelectedPrefecture,
       setPrefectures: this.setPrefectures,
       setPrefecturePopulations: this.setPrefecturePopulations
     }

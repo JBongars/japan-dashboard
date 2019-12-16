@@ -1,5 +1,6 @@
 import React, { CSSProperties, useContext } from "react";
 import { Geography } from "react-simple-maps";
+import config from "../../../config/index.json";
 
 import { HomeContext } from "../../../context/homeData";
 
@@ -9,10 +10,18 @@ const stroke: CSSProperties = {
   strokeLinejoin: "round"
 };
 
+const getLog = (value: number, total: number): number => {
+  return value / total;
+};
+
 const GeoItem = (geo: any): React.ComponentElement<any, null> => {
   const context: any = useContext(HomeContext);
-  const { mutators } = context;
-  const { setSelectedPrefecture } = mutators;
+  const { data, mutators } = context;
+  const { setSelectedPrefecture, resetSelectedPrefecture } = mutators;
+  const { prefectures } = data;
+  const itemPrefecture = prefectures.find(
+    elem => elem.prefectureDetails.iso === geo.properties.prefectureId
+  );
 
   return (
     <Geography
@@ -20,15 +29,18 @@ const GeoItem = (geo: any): React.ComponentElement<any, null> => {
       geography={geo}
       onMouseEnter={async () => {
         const { prefectureId } = geo.properties;
-        setSelectedPrefecture(prefectureId);
+        await setSelectedPrefecture(prefectureId);
       }}
-      // onMouseLeave={() => {
-      //   setTooltipContent("");
-      // }}
+      onMouseLeave={async () => {
+        await resetSelectedPrefecture();
+      }}
       style={{
         default: {
-          // fill: `rgba(0,0,102,${Math.random()})`,
-          fill: `rgba(0,0,102,0.1)`,
+          fill: `rgba(0,0,102,${getLog(
+            itemPrefecture.population,
+            config.japanDashboardApi.geoGradientMax
+          )})`,
+          // fill: `rgba(0,0,102,0.1)`,
           outline: "none",
           ...stroke
         },

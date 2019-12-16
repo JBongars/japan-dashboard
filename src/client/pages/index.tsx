@@ -2,6 +2,7 @@ import * as React from "react";
 import HomePage from "../components/homePage";
 import {
   getPrefectures,
+  getBasePrefecture,
   getPrefecturePopulationByIsoCode
 } from "../services/prefecturePopulationService";
 
@@ -11,9 +12,9 @@ const Index = (): React.ComponentElement<null, null> => <HomePage />;
 
 Index.getInitialProps = async (): Promise<any> => {
   const prefectures: Prefecture[] = await getPrefectures();
-  const selectedPrefecture: Prefecture = prefectures[0];
+  const selectedPrefecture: Prefecture = await getBasePrefecture();
   const prefecturePopulations: PrefecturePopulation[] = await getPrefecturePopulationByIsoCode(
-    selectedPrefecture.iso
+    selectedPrefecture.prefectureDetails.iso
   );
 
   return {

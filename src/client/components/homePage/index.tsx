@@ -6,17 +6,11 @@ import { PrefecturePopulation } from "../../types";
 
 const HomePage = (): React.ComponentElement<null, null> => {
   const context: any = useContext(HomeContext);
-  const { data, mutators } = context;
+  const { data } = context;
 
   const ageGroups = ["Below 20", "20-40", "40-60", "Above 60"];
 
-  const { prefectures, selectedPrefecture, prefecturePopulations } = data;
-  const { setSelectedPrefecture } = mutators;
-
-  async function updateSelectedPrefecture(e) {
-    const selectedPrefectureIso = e.target.value;
-    setSelectedPrefecture(selectedPrefectureIso);
-  }
+  const { selectedPrefecture, prefecturePopulations } = data;
 
   function abbreviateNumber(num: number): string | boolean {
     function helper(
@@ -54,10 +48,13 @@ const HomePage = (): React.ComponentElement<null, null> => {
   return (
     <div className={styles.container}>
       <div className={styles.col6}>
-        <h2>
-          Japan - {selectedPrefecture.prefectureEn} (
-          {selectedPrefecture.prefectureJp})
-        </h2>
+        {selectedPrefecture.prefectureDetails.iso === "all" || (
+          <h2>
+            Japan - {selectedPrefecture.prefectureDetails.prefectureEn} (
+            {selectedPrefecture.prefectureDetails.prefectureJp})
+          </h2>
+        )}
+        {selectedPrefecture.prefectureDetails.iso === "all" && <h2>Japan</h2>}
         {process.browser ? <Map /> : <div />}
       </div>
       <div className={styles.col6}>
