@@ -58,14 +58,14 @@ const HomePage = (): React.ComponentElement<null, null> => {
         {process.browser ? <Map /> : <div />}
       </div>
       <div className={styles.col6}>
-        <div>
+        <div className={styles.headerContainer}>
           <h2>Total Population</h2>
           <h2 className={styles.blueText}>
             {abbreviateNumber(sumPopulation(prefecturePopulations))}
           </h2>
         </div>
         <div>
-          <div>
+          <div className={styles.col6}>
             <h3>Male</h3>
             <h3 className={styles.blueText}>
               {abbreviateNumber(
@@ -75,7 +75,7 @@ const HomePage = (): React.ComponentElement<null, null> => {
               )}
             </h3>
           </div>
-          <div>
+          <div className={styles.col6}>
             <h3>Female</h3>
             <h3 className={styles.blueText}>
               {abbreviateNumber(
