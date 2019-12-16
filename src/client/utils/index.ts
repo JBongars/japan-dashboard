@@ -31,10 +31,10 @@ const abbreviateNumber = (num: number): string | boolean => {
   }
 
   if (num >= 10 ** 9) {
-    return helper(num, 9, "BLN");
+    return helper(num, 9, "B");
   }
   if (num >= 10 ** 6) {
-    return helper(num, 6, "MIL");
+    return helper(num, 6, "M");
   }
   if (num >= 10 ** 3) {
     return helper(num, 3, "K");
