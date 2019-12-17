@@ -21,7 +21,7 @@ const HomePage = (): React.ComponentElement<null, null> => {
             </h2>
           )}
           {selectedPrefecture.prefectureDetails.iso === "all" && <h2>Japan</h2>}
-          {process.browser ? <Map /> : <div />}
+          <Map />
         </div>
         <div className={styles.col6}>
           <PopulationTable />

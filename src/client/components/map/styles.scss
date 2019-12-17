@@ -1,0 +1,23 @@
+.container {
+  position: relative;
+}
+
+.legend {
+  position: absolute;
+  right: 40px;
+  bottom: 30px;
+  font-size: 16px;
+  text-align: center;
+
+  & > div {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.thermometer {
+  margin: 0 10px;
+  background-image: linear-gradient(45deg, transparent, rgb(10,110,140));
+  width: 100px;
+  height: 10px;
+}
