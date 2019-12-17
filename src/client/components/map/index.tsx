@@ -7,14 +7,13 @@ const geoUrl = config.japanDashboardApi.geoDataUrl;
 
 const Map = (): React.ComponentElement<void, null> => {
   const width = 800;
-  const height = 800;
+  const height = 600;
 
   return (
     <React.Fragment>
       <ComposableMap
         width={width}
         height={height}
-        data-tip=""
         projection="geoMercator"
         projectionConfig={{
           scale: 1500

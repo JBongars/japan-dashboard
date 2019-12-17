@@ -11,7 +11,7 @@ const stroke: CSSProperties = {
 };
 
 const getLog = (value: number, total: number): number => {
-  return value / total;
+  return value ** 0.5 / total ** 0.5;
 };
 
 const GeoItem = (geo: any): React.ComponentElement<any, null> => {
@@ -21,6 +21,10 @@ const GeoItem = (geo: any): React.ComponentElement<any, null> => {
   const { prefectures } = data;
   const itemPrefecture = prefectures.find(
     elem => elem.prefectureDetails.iso === geo.properties.prefectureId
+  );
+  const fill = getLog(
+    itemPrefecture.population,
+    config.japanDashboardApi.geoGradientMax
   );
 
   return (
@@ -36,10 +40,7 @@ const GeoItem = (geo: any): React.ComponentElement<any, null> => {
       }}
       style={{
         default: {
-          fill: `rgba(0,0,102,${getLog(
-            itemPrefecture.population,
-            config.japanDashboardApi.geoGradientMax
-          )})`,
+          fill: `rgba(10, 110, 140,${fill})`,
           outline: "none",
           ...stroke
         },
