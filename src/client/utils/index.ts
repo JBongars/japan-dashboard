@@ -47,4 +47,7 @@ const sumPopulation = (prefecturePopulations: PrefecturePopulation[]): number =>
     .map((elem: PrefecturePopulation): string => elem.population)
     .reduce((a: number, elem: string): number => a + parseInt(elem, 10), 0);
 
-export { useMemoAsync, abbreviateNumber, sumPopulation };
+const getLog = (value: number, total: number): number =>
+  value ** 0.5 / total ** 0.5;
+
+export { useMemoAsync, abbreviateNumber, sumPopulation, getLog };

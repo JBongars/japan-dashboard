@@ -3,15 +3,12 @@ import { Geography } from "react-simple-maps";
 import config from "../../../config";
 
 import { HomeContext } from "../../../context/homeData";
+import { getLog } from "../../../utils";
 
 const stroke: CSSProperties = {
   stroke: "#888",
   strokeWidth: "0.5pt",
   strokeLinejoin: "round"
-};
-
-const getLog = (value: number, total: number): number => {
-  return value ** 0.5 / total ** 0.5;
 };
 
 const GeoItem = (geo: any): React.ComponentElement<any, null> => {
@@ -31,11 +28,11 @@ const GeoItem = (geo: any): React.ComponentElement<any, null> => {
     <Geography
       key={geo.rsmKey}
       geography={geo}
-      onMouseEnter={async () => {
+      onMouseEnter={async (): Promise<void> => {
         const { prefectureId } = geo.properties;
         await setSelectedPrefecture(prefectureId);
       }}
-      onMouseLeave={async () => {
+      onMouseLeave={async (): Promise<void> => {
         await resetSelectedPrefecture();
       }}
       style={{

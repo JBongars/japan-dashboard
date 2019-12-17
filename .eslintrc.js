@@ -11,12 +11,14 @@ module.exports = {
   },
   "parser": "babel-eslint",
   "rules": {
+    "global-require": 0,
     "prettier/prettier": "error",
     "import/no-unresolved": 0,
     "import/no-extraneous-dependencies": 0,
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", "ts", "tsx"] }],
     "react/jsx-one-expression-per-line": 0,
     "react/no-array-index-key": 0,
+    "react/jsx-boolean-value": 0,
     "no-shadow": 0
   },
   "settings": {
