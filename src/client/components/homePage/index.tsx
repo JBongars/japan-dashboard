@@ -8,12 +8,14 @@ const HomePage = (): React.ComponentElement<null, null> => {
   return (
     <React.Fragment>
       <div className={styles.container}>
-        <div className={styles.col6}>
-          <h2>Japan</h2>
-          <Map />
-        </div>
-        <div className={styles.col6}>
-          <PopulationTable />
+        <div>
+          <div className={styles.col6}>
+            <h2>Japan</h2>
+            <Map />
+          </div>
+          <div className={styles.col6}>
+            <PopulationTable />
+          </div>
         </div>
         <Footer />
       </div>

@@ -1,8 +1,13 @@
 .container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
   text-align: left;
   font-size: 1.4rem;
   font-family: "Open Sans", sans-serif;
   padding: 0 40px;
+  min-height: 100vh;
+
 
   h2, h3 {
     line-height: 1;
