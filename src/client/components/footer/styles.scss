@@ -1,0 +1,14 @@
+.container {
+  padding: 10px 0;
+  height: 120px;
+
+  span {
+    display: inline-block;
+    font-size: 12px;
+    line-height: 120px;
+  }
+
+  img {
+    float: right;
+  }
+}
