@@ -4,6 +4,11 @@
 
 - NPM v6.11.3
 - Node v10
+- Requires installing and running [JBongars/japan-dashboard-api](https://github.com/JBongars/japan-dashboard-api)
+
+## Preview
+
+![Working Prototype](preview.png)
 
 ## Build
 
@@ -19,5 +24,4 @@ This project is currently incomplete. Please find a list of the following issues
 
 1. Currently there are no working unit tests. These need to be updated
 2. Currently there are not e2e tests. These need to be implemented
-3. A CORS error is being generated when a request is made to http://localhost:3000, next needs to be re-configured to accept http
-4. The wrong projection is being used on the map of Japan. A custom projection should be used to more accurately show Japan. (Apologies, this was my first time using D3)
+3. Current version of Typescript is out of date. Considering upgrading for stability
