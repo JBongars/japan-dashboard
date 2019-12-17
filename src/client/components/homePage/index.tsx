@@ -1,8 +1,8 @@
 import React from "react";
 import styles from "./styles.scss";
 import Map from "../map";
-import PopulationTable from "../populationTable";
-import Footer from "../footer";
+import PopulationTable from "../PopulationTable";
+import Footer from "../Footer";
 
 const HomePage = (): React.ComponentElement<null, null> => {
   return (

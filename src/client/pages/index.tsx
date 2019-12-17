@@ -1,5 +1,5 @@
 import * as React from "react";
-import HomePage from "../components/homePage";
+import HomePage from "../components/HomePage";
 import {
   getPrefectures,
   getBasePrefecture,
