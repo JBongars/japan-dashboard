@@ -1,12 +1,19 @@
 export interface Prefecture {
-  population?: number;
+  population: number;
   prefectureDetails: {
-    Id?: number;
-    prefectureEn?: string;
-    prefectureJp?: string;
-    region?: string;
+    Id: number;
+    prefectureEn: string;
+    prefectureJp: string;
+    region: string;
     iso: string;
   }
+}
+
+export interface DefaultPrefecture {
+  prefectureDetails: {
+    iso: string;
+  }
+  populationDetails: PrefecturePopulation[];
 }
 
 export interface PrefecturePopulation {

@@ -6,7 +6,8 @@ import {
   Prefecture,
   PrefectureResponse,
   PrefecturePopulation,
-  PrefecturePopulationResponse
+  PrefecturePopulationResponse,
+  DefaultPrefecture
 } from "../types";
 
 const getPrefecturesInner = async (): Promise<Prefecture[]> => {
@@ -27,12 +28,6 @@ const getPrefecturesInner = async (): Promise<Prefecture[]> => {
   return data.result;
 };
 
-const getBasePrefecture = (): Prefecture => ({
-  prefectureDetails: {
-    iso: "all"
-  }
-});
-
 const getPrefecturePopulationByIsoCodeInner = async (
   iso: string
 ): Promise<PrefecturePopulation[]> => {
@@ -52,15 +47,27 @@ const getPrefecturePopulationByIsoCodeInner = async (
   return data.result;
 };
 
+const getBasePrefectureInner = async (): Promise<DefaultPrefecture> => {
+  const populationDetails = await getPrefecturePopulationByIsoCodeInner("all");
+  return {
+    prefectureDetails: {
+      iso: "all"
+    },
+    populationDetails
+  };
+};
+
 const getPrefectures = useMemoAsync(getPrefecturesInner);
 const getPrefecturePopulationByIsoCode = useMemoAsync(
   getPrefecturePopulationByIsoCodeInner
 );
+const getBasePrefecture = useMemoAsync(getBasePrefectureInner);
 
 export {
   getPrefectures,
   getBasePrefecture,
   getPrefecturePopulationByIsoCode,
   getPrefecturesInner,
+  getBasePrefectureInner,
   getPrefecturePopulationByIsoCodeInner
 };

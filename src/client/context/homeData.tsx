@@ -1,24 +1,21 @@
 /* eslint-disable react/sort-comp */
 
 import React from "react";
-import {
-  getPrefecturePopulationByIsoCode,
-  getBasePrefecture
-} from "../services/prefecturePopulationService";
-import { Prefecture, PrefecturePopulation } from "../types";
+import { getPrefecturePopulationByIsoCode } from "../services/prefecturePopulationService";
+import { Prefecture, DefaultPrefecture, PrefecturePopulation } from "../types";
 
 export interface HomeDataState {
   data: {
+    showDefaultPrefecture: boolean;
+    defaultPrefecture: DefaultPrefecture;
     selectedPrefecture: Prefecture;
     prefectures: Prefecture[];
     prefecturePopulations: PrefecturePopulation[];
   };
   mutators: {
     setSelectedPrefecture: (selectedPrefectureIso: string) => Promise<void>;
+    setShowDefaultPrefecture: (showDefaultPrefecture: boolean) => void;
     setPrefectures: (prefectures: Prefecture[]) => void;
-    setPrefecturePopulations: (
-      prefecturePopulations: PrefecturePopulation[]
-    ) => void;
   };
 }
 
@@ -33,32 +30,28 @@ class HomeData extends React.Component<Object, HomeDataState> {
     const selectedPrefecture = data.prefectures.find(
       elem => elem.prefectureDetails.iso === selectedPrefectureIso
     );
-    const prefecturePopulations: PrefecturePopulation[] = await getPrefecturePopulationByIsoCode(
-      selectedPrefectureIso
-    );
+    this.setShowDefaultPrefecture(false);
 
-    this.setState(prevState => ({
-      data: {
-        ...prevState.data,
-        selectedPrefecture,
-        prefecturePopulations
+    this.setState(
+      prevState => ({
+        data: {
+          ...prevState.data,
+          selectedPrefecture
+        }
+      }),
+      async () => {
+        const prefecturePopulations: PrefecturePopulation[] = await getPrefecturePopulationByIsoCode(
+          selectedPrefectureIso
+        );
+
+        this.setState(prevState => ({
+          data: {
+            ...prevState.data,
+            prefecturePopulations
+          }
+        }));
       }
-    }));
-  };
-
-  resetSelectedPrefecture = async () => {
-    const selectedPrefecture: Prefecture = getBasePrefecture();
-    const prefecturePopulations: PrefecturePopulation[] = await getPrefecturePopulationByIsoCode(
-      "all"
     );
-
-    this.setState(prevState => ({
-      data: {
-        ...prevState.data,
-        selectedPrefecture,
-        prefecturePopulations
-      }
-    }));
   };
 
   setPrefectures = (prefectures: Prefecture[]): void => {
@@ -70,19 +63,19 @@ class HomeData extends React.Component<Object, HomeDataState> {
     }));
   };
 
-  setPrefecturePopulations = (
-    prefecturePopulations: PrefecturePopulation[]
-  ): void => {
+  setShowDefaultPrefecture = (showDefaultPrefecture: boolean): void => {
     this.setState(prevState => ({
       data: {
         ...prevState.data,
-        prefecturePopulations
+        showDefaultPrefecture
       }
     }));
   };
 
   state = {
     data: {
+      showDefaultPrefecture: true,
+      defaultPrefecture: null,
       selectedPrefecture: null,
       prefectures: [],
       prefecturePopulations: [],
@@ -91,9 +84,8 @@ class HomeData extends React.Component<Object, HomeDataState> {
     // eslint-disable-next-line react/no-unused-state
     mutators: {
       setSelectedPrefecture: this.setSelectedPrefecture,
-      resetSelectedPrefecture: this.resetSelectedPrefecture,
-      setPrefectures: this.setPrefectures,
-      setPrefecturePopulations: this.setPrefecturePopulations
+      setShowDefaultPrefecture: this.setShowDefaultPrefecture,
+      setPrefectures: this.setPrefectures
     }
   };
 

@@ -12,7 +12,8 @@ const Index = (): React.ComponentElement<null, null> => <HomePage />;
 
 Index.getInitialProps = async (): Promise<any> => {
   const prefectures: Prefecture[] = await getPrefectures();
-  const selectedPrefecture: Prefecture = await getBasePrefecture();
+  const selectedPrefecture: Prefecture = prefectures[0];
+  const defaultPrefecture: Prefecture = await getBasePrefecture();
   const prefecturePopulations: PrefecturePopulation[] = await getPrefecturePopulationByIsoCode(
     selectedPrefecture.prefectureDetails.iso
   );
@@ -20,6 +21,7 @@ Index.getInitialProps = async (): Promise<any> => {
   return {
     prefectures,
     selectedPrefecture,
+    defaultPrefecture,
     prefecturePopulations
   };
 };

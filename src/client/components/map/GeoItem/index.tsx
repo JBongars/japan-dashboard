@@ -14,7 +14,7 @@ const stroke: CSSProperties = {
 const GeoItem = (geo: any): React.ComponentElement<any, null> => {
   const context: any = useContext(HomeContext);
   const { data, mutators } = context;
-  const { setSelectedPrefecture, resetSelectedPrefecture } = mutators;
+  const { setSelectedPrefecture, setShowDefaultPrefecture } = mutators;
   const { prefectures } = data;
   const itemPrefecture = prefectures.find(
     elem => elem.prefectureDetails.iso === geo.properties.prefectureId
@@ -32,8 +32,8 @@ const GeoItem = (geo: any): React.ComponentElement<any, null> => {
         const { prefectureId } = geo.properties;
         await setSelectedPrefecture(prefectureId);
       }}
-      onMouseLeave={async (): Promise<void> => {
-        await resetSelectedPrefecture();
+      onMouseLeave={() => {
+        setShowDefaultPrefecture(true);
       }}
       style={{
         default: {
